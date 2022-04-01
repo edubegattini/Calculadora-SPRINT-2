@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SPconsult</title>
+</head>
+
+<body>
+
+    <h2>CALCULADORA FINANCEIRA</h2>
+
+    Informe o nome da empresa: <br>
+    <input placeholder="Nome da Empresa" id="in_nome"> <br> <br>
+
+    Informe a média de preço do seu produto: <br>
+    <input placeholder="R$" id="in_preco"> <br> <br>
+
+    Informe o valor médio por mês que é produzido pela empresa: <br>
+    <input placeholder="Produção Mensal" id="in_valor"> <br> <br>
+
+    Informe o valor de desperdício (em %): <br>
+    <input placeholder="%" id="in_desperdicio"> <br> <br>
+
+    <button onclick="resultado()">Ver resultado</button>
+    <br> <br>
+
+    <div id="div_avancar"></div>
+    <div id="div_calculo"></div>
+
+</body>
+
+</html>
+
+<script>
+
+        var desp = Number(in_desperdicio.value)
+        var prod = Number(in_valor.value)
+        var prc = Number(in_preco.value).toFixed(2)
+        var prod_desp = (prod * (desp / 100)) * prc
+        var spprod = prod * desp / 100
+        var nome = (in_nome.value)
+
+function resultado() {
+
+    var desp = Number(in_desperdicio.value)
+
+div_avancar.innerHTML =
+
+        `Olá, <b style="color: green;">${in_nome.value}</b>. Seu desperdício médio por mês é de 
+        <b style="color: red;">${desp}%</b>.
+        <br> 
+        Levando em consideração o valor de <b style="color: green;">R$${prc} por kg</b>, seu prejuízo seria de
+        <b style="color: red;">R$${prod_desp.toFixed(2)}</b>!
+        
+        <br> <br>
+        
+        <button onclick="calculo()">Calcular como seria com a SPconsult</button>
+        
+        <br> <br>`
+    }
+
+
+function calculo() {
+
+div_calculo.innerHTML = 
+        
+        `Com a nossa solução, garantimos a diminuição de, no mínimo, <b>30%</b> do percentual de seu desperdiço! 
+        Sendo assim, o desperdiço de sua colheita cairia de <b style="color: red;"> ${desp}% </b> para 
+        <b style="color: green;">${(desp * Number(0.7).toFixed(2))}% </b>!
+<br> 
+        Com isso, ao invés da empresa perder <b style="color: red;">${prod * (desp / 100)}Kg </b>, ela irá perder no máximo
+        <b style="color: green;">${spprod * (0.70)}Kg</b>.
+<br>
+        Em dinheiro, hoje em dia se perde <b style="color: red;">R$ ${prod_desp.toFixed(2)}</b> em sua empresa, mas agora com nosso monitoramento e serviços, seria uma perda de apenas  
+        <b style="color: green;">R$ ${prod_desp * Number(0.7).toFixed(2)}</b>,
+        você vai parar de perder pelo menos <b style="color: green;">R$ ${prod_desp - (prod_desp * (0.7)).toFixed(2)}</b> todos os meses e 
+        <b style="color: green;">R$${(prod_desp - (prod_desp * (0.7)).toFixed(2)) * Number(12)}</b> todos os anos!</b>
+        <br>`
+    }
+
+</script>
